@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <title>John Doe's Garment Store</title>
+    </h:head>
+    <h:body>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+        <h:outputStylesheet name="./css/default.css"/> 
+        <h:outputStylesheet name="./css/cssLayout.css"/>        
+        
+        <h1>Products under each Category</h1>
+
+            <br /><br />
+            <h:dataTable value ="#{productAdminView.printProductsofCategory(param.id)}" var="item" >
+
+                <h:column>
+                    <h:link outcome = "productAdmindetails"> 
+                        <h:outputText value = "#{item.getProductName()}" />
+                        <f:param name = "id" value="#{item.getProductId()}" />
+                        <br /><br />
+                    </h:link>
+                </h:column>
+                
+                <h:column>
+                    <h:outputText value ="#{item.getPrice()}" />
+                    <h:outputText value ="&#160;" />
+                    <br /><br />
+                </h:column>
+                
+            </h:dataTable>
+            
+            
+            <h1>Add a new Product under this Category</h1>
+            <br /><br />
+            
+            <h:form id ="addproduct" enctype="multipart/form-data">
+                
+                <h:outputFormat value="Product Name" />
+                <h:inputText id ="productname" value ="#{productAdminView.productName}" />
+                <br /><br />
+                
+                <h:outputFormat value="Product Price" />
+                <h:inputText id ="productprice" value ="#{productAdminView.productPrice}" />
+                <br /><br />
+                
+                <h:outputFormat value="Category Name" />
+                <h:inputText id ="categoryn" value="#{productAdminView.categoryName}" />
+                <br /><br />
+                
+                <h:outputFormat value="Product Brand" />
+                <h:inputText id ="productbrand" value ="#{productAdminView.productBrand}" />
+                <br /><br />
+                
+                <h:outputFormat value="Product Description" />
+                <h:inputText id ="productdescription" value ="#{productAdminView.productDescription}" />
+                <br /><br />
+                
+                <h:inputFile id = "file" value ="#{productAdminView.uploadimage}" />
+                <h:commandButton value="Upload" action="#{productAdminView.uploadedtobyte()}" >
+                    <f:ajax execute="file" />
+                </h:commandButton>
+
+                
+                <br /><br />
+                <h:commandButton value="Add new Product" action="#{productAdminView.addProduct()}" />
+
+                <h:commandButton value="Go Back" action ="#{productAdminView.gotoAdminmain()}" />
+                
+                <h:commandButton value="Logout"  action="#{login.logout}" />
+
+            </h:form>                
+
+              
+    </h:body>
+</html>

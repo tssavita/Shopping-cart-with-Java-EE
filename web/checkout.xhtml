@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!--      xmlns:custom="http://customvalidation/jsf/composite/cc">-->
+    <h:head>
+        <title>John Doe's Garment Store</title>
+    </h:head>
+    <h:body>
+        <h1>Checkout Details</h1>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+        <h:outputStylesheet name="./css/default.css"/> 
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        
+        <h:outputText value ="Subtotal = #{cartOperations.totalCart()} euros" />
+        <br /><br />
+        
+        <h:outputText value ="Deliver charge = 3.5 euros" />
+        <br /><br />
+        
+        <h:outputText value ="Total = "  /> 
+        <h:outputText value ="#{cartOperations.totalIncludingDelivery()}" />
+                
+        <h:form id = "registerform" >
+            
+            <h:outputText value="First Name : " />
+            <h:inputText id ="firstName" value ="#{checkout.firstName}" required="true" requiredMessage="First name is required" >
+                <f:validateLength minimum ="3" maximum="40" />
+                <!-- <f:validateRegex pattern ="^[a-zA-Z]$" />-->
+            </h:inputText>
+            <br/><br />
+            
+            <h:outputText value="Last Name : " />
+            <h:inputText id = "lastName" value ="#{checkout.lastName}" required="true" requiredMessage="Last name is required">
+                <f:validateLength minimum="3" maximum="40" />
+            </h:inputText>
+            <br/><br />
+                        
+            <h:outputText value ="Email id : "/>
+            <h:inputText id = "email" maxlength="40" value ="#{checkout.emailId}" required="true" requiredMessage="Email id is required">
+                <f:validateRegex pattern = "^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+            </h:inputText>
+            <br/><br />
+            
+            <h:outputText value ="Street : " />
+            <h:inputText id = "street" value ="#{checkout.street}" required="true" requiredMessage="Enter name of street where you stay">
+                <f:validateLength minimum ="3" maximum="40" />
+            </h:inputText>
+            <br/><br />
+            
+            <h:outputText value ="Town : " />
+            <h:inputText id ="town" value ="#{checkout.town}" required="true" requiredMessage="Enter the name of town where you stay">
+                <f:validateLength minimum ="3" maximum="40" />
+            </h:inputText>
+            <br/><br />
+            
+            <h:outputText value ="Country : " />
+            <h:inputText id="country" value ="#{checkout.country}" required="true" requiredMessage="Enter the name of country where you stay">
+                <f:validateLength minimum="3" maximum="40" />
+            </h:inputText>
+            <br /><br />
+            
+            <h:outputText value ="Credit card number (Visa) " />
+            <h:inputText value ="XXXX-XXXX-XXXX" required="true" requiredMessage="Enter the name of country where you stay">
+                 <f:validateRegex pattern="^4[0-9]{12}(?:[0-9]{3})?$" />
+
+            </h:inputText>
+            <br /><br />
+            <br /><br />
+            
+            <h:commandButton value="Submit and Purchase" action ="#{checkout.completeOrder(cartOperations.cartContents)}" />
+        </h:form>
+    </h:body>
+</html>
+

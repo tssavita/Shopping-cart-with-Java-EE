@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>John Doe's Garment Store</title>
+    </h:head>
+    <h:body>
+        <h1>Transaction successful</h1>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+        <h:outputStylesheet name="./css/default.css"/> 
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        
+        <h:outputText value ="The goods shall be delivered at the specified address in 5 working days." />
+        <br /><br />
+        
+        <h:outputText value ="Here is the order number - " />
+        <h:outputText value ="#{checkout.orderId}" />
+        <br /><br />
+        
+        <h:outputText value ="Please keep it safe for any further communications till your order has been delivered." />
+        <br/><br />
+        
+        <h:form id = "addfeedbackform">
+            <h:inputText id = "comments" value="#{feedback.feedback}"  />
+            
+            <h:commandButton value = "Submit feedback" action="#{feedback.addfeedback(checkout.emailId)}" >
+                <f:ajax execute ="comments" render ="outputMessage" />
+            </h:commandButton>
+        </h:form>
+        
+        <h:outputText value ="Thank you for shopping at Vastralaya. Please visit again." />
+        <br /><br />
+        
+        <h:outputText value ="#{cartOperations.cartListSize}" />
+        
+        <h:form>
+            <h:commandButton value="Return to home page" action="#{feedback.gotoHome(cartOperations)}" />
+        </h:form>
+    
+    </h:body>
+</html>
+

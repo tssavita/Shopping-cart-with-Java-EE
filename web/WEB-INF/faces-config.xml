@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>       
+
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <to-view-id>/categorydetails.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/mainpage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>        
+
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>        
+
+    <navigation-rule>
+        <from-view-id>/categorydetails.xhtml</from-view-id>
+        <navigation-case>
+            <to-view-id>/productdetails.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/productdetails.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>added to cart</from-outcome>
+            <to-view-id>/viewcart.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>            
+
+    <navigation-rule>
+        <from-view-id>/viewcart.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>continue</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/viewcart.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>checkout</from-outcome>
+            <to-view-id>/checkout.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/viewcart.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>nothing to checkout</from-outcome>
+            <to-view-id>/viewcart.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/checkout.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/successtransaction.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/checkout.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/checkout.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/mainpage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>viewcategory</from-outcome>
+            <to-view-id>/categories.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/mainpage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>viewuser</from-outcome>
+            <to-view-id>/userinfo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/successtransaction.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/products.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>mainpage</from-outcome>
+            <to-view-id>/mainpage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/products.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>loggedout</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/userinfo.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>loggedout</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+
+
+<!-- Managed Beans -->    
+
+    <managed-bean>
+        <managed-bean-name>index</managed-bean-name>
+        <managed-bean-class>managed.Index</managed-bean-class>
+        <managed-bean-scope>dependent</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>cartOperations</managed-bean-name>
+        <managed-bean-class>managed.CartOperations</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>checkout</managed-bean-name>
+        <managed-bean-class>managed.Checkout</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>feedback</managed-bean-name>
+        <managed-bean-class>managed.Successtransaction</managed-bean-class>
+        <managed-bean-scope>dependent</managed-bean-scope>
+    </managed-bean>
+
+<!--    <managed-bean>
+        <managed-bean-name>category</managed-bean-name>
+        <managed-bean-class>managed.Category</managed-bean-class>
+        <managed-bean-scope>dependent</managed-bean-scope>
+    </managed-bean>-->
+    
+    <!-- Managed beans for the admin interface -->
+    
+    <managed-bean>
+        <managed-bean-name>login</managed-bean-name>
+        <managed-bean-class>managedadmin.Login</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>mainAdminView</managed-bean-name>
+        <managed-bean-class>managedadmin.MainAdminView</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>userInfo</managed-bean-name>
+        <managed-bean-class>managedadmin.UserInfo</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>categoryAdminView</managed-bean-name>
+        <managed-bean-class>managedadmin.CategoryAdminView</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>productAdminView</managed-bean-name>
+        <managed-bean-class>managedadmin.ProductAdminView</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+<!--    <render-kit>
+        <renderer>
+            <component-family>org.primefaces.component</component-family>
+            <renderer-type>org.primefaces.component.FileUploadRenderer</renderer-type>
+            <renderer-class>utils.MyFileUploadRenderer</renderer-class>
+        </renderer>
+    </render-kit>-->
+</faces-config>
